@@ -384,11 +384,14 @@ export namespace diffbot {
     nbIncomingEdges?: number
     nbFollowers?: number
     nbLocations?: number
+    nbEmployees?: number
     nbEmployeesMin?: number
     nbEmployeesMax?: number
     nbActiveEmployeeEdges?: number
+    nbUniqueInvestors?: number
     educations?: Education[]
     nationalities?: Nationality[]
+    fullName?: string
     allNames?: string[]
     skills?: Partial<BasicEntity>[]
     children?: BasicEntity[]
@@ -400,6 +403,8 @@ export namespace diffbot {
     parents?: BasicEntity[]
     gender?: Gender
     importance?: number
+    monthlyTraffic?: number
+    monthlyTrafficGrowth?: number
     wikipediaPageviews?: number
     wikipediaPageviewsLastQuarterGrowth?: number
     wikipediaPageviewsLastYear?: number
@@ -432,6 +437,8 @@ export namespace diffbot {
     naicsClassification2017?: any[]
     naicsClassification?: any[]
     sicClassification?: any[]
+    naceClassification?: any[]
+    iSicClassification?: any[]
     employeeCategories?: any[]
     emailAddresses?: EmailAddress[]
     age?: number
@@ -455,6 +462,18 @@ export namespace diffbot {
     technographics?: Technographic[]
     stock?: Stock
     companiesHouseIds?: string[]
+    yearlyRevenues?: AnnualRevenue[]
+    revenue?: Amount
+    parentCompany?: BasicEntity
+    legalEntities?: BasicEntity[]
+  }
+
+  export interface AnnualRevenue {
+    revenue: Amount
+    isCurrent: boolean
+    year: number
+    filingDate: DateTime
+    revenueDate: DateTime
   }
 
   export interface Technographic {
