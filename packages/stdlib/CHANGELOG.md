@@ -1,5 +1,21 @@
 # @agentic/stdlib
 
+## 7.4.3
+
+### Patch Changes
+
+- Fix increase default JinaClient timeoutMs to 60s
+- Updated dependencies
+  - @agentic/jina@7.3.4
+
+## 7.4.2
+
+### Patch Changes
+
+- Bug fix for zoominfo re-authentication
+- Updated dependencies
+  - @agentic/zoominfo@7.4.2
+
 ## 7.4.1
 
 ### Patch Changes
