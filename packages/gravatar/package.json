@@ -1,13 +1,13 @@
 {
-  "name": "@agentic/zoominfo",
-  "version": "7.4.2",
-  "description": "Agentic SDK for ZoomInfo.",
+  "name": "@agentic/gravatar",
+  "version": "7.4.3",
+  "description": "Agentic SDK for Gravatar.",
   "author": "Travis Fischer <travis@transitivebullsh.it>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/transitive-bullshit/agentic.git",
-    "directory": "packages/zoominfo"
+    "directory": "packages/gravatar"
   },
   "type": "module",
   "source": "./src/index.ts",
@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "@agentic/core": "workspace:*",
-    "jsrsasign": "^10.9.0",
     "ky": "^1.7.5",
     "p-throttle": "^6.2.0"
   },
@@ -41,8 +40,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@agentic/tsconfig": "workspace:*",
-    "@types/jsrsasign": "^10.5.15"
+    "@agentic/tsconfig": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

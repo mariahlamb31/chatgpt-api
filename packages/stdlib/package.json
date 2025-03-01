@@ -1,6 +1,6 @@
 {
   "name": "@agentic/stdlib",
-  "version": "7.4.1",
+  "version": "7.4.5",
   "description": "Standard library of AI functions which work with any LLM and TypeScript AI SDK.",
   "author": "Travis Fischer <travis@transitivebullsh.it>",
   "license": "MIT",
@@ -45,6 +45,7 @@
     "@agentic/firecrawl": "workspace:*",
     "@agentic/genkit": "workspace:*",
     "@agentic/github": "workspace:*",
+    "@agentic/gravatar": "workspace:*",
     "@agentic/hacker-news": "workspace:*",
     "@agentic/hunter": "workspace:*",
     "@agentic/jina": "workspace:*",

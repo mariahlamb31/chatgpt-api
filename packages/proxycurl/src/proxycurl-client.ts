@@ -90,7 +90,9 @@ export namespace proxycurl {
     first_name: z.string(),
     last_name: z.string().optional(),
     location: z.string().optional(),
-    similarity_checks: z.string().optional(),
+    similarity_checks: z
+      .union([z.literal('include'), z.literal('skip')])
+      .optional(),
     title: z.string().optional(),
     enrich_profile: OptionalEnrichFieldSchema
   })
@@ -1857,6 +1859,7 @@ export namespace proxycurl {
     activities: z.array(StickyActivitySchema).optional(),
     articles: z.array(StickyArticleSchema).optional(),
     background_cover_image_url: z.string().optional(),
+    birth_date: MagentaDateSchema.optional(),
     certifications: z.array(StickyCertificationSchema).optional(),
     city: z.string().optional(),
     connections: z.number().optional(),
@@ -1867,12 +1870,17 @@ export namespace proxycurl {
     first_name: z.string().optional(),
     follower_count: z.number().optional(),
     full_name: z.string().optional(),
+    gender: z.string().optional(),
     groups: z.array(StickyPersonGroupSchema).optional(),
     headline: z.string().optional(),
+    industry: z.string().optional(),
+    inferred_salary: PurpleInferredSalarySchema.optional(),
     languages: z.array(z.string()).optional(),
     last_name: z.string().optional(),
     occupation: z.string().optional(),
     people_also_viewed: z.array(StickyPeopleAlsoViewedSchema).optional(),
+    personal_emails: z.array(z.string()).optional(),
+    personal_numbers: z.array(z.string()).optional(),
     profile_pic_url: z.string().optional(),
     public_identifier: z.string().optional(),
     recommendations: z.array(z.string()).optional(),
@@ -2067,7 +2075,7 @@ export class ProxycurlClient extends AIFunctionsProvider {
     apiBaseUrl = getEnv('PROXYCURL_API_BASE_URL') ??
       'https://nubela.co/proxycurl',
     throttle = true,
-    timeoutMs = 30_000,
+    timeoutMs = 60_000,
     ky = defaultKy
   }: {
     apiKey?: string
@@ -2100,6 +2108,7 @@ export class ProxycurlClient extends AIFunctionsProvider {
     })
   }
 
+  /** Gets the LinkedIn profile for a company given it's domain `url`. */
   @aiFunction({
     name: 'get_linkedin_company',
     description:
@@ -2126,6 +2135,7 @@ export class ProxycurlClient extends AIFunctionsProvider {
     }
   }
 
+  /** Gets the LinkedIn profile for a person given some unique, identifying information about them. */
   @aiFunction({
     name: 'get_linkedin_person',
     description:
@@ -2142,6 +2152,7 @@ export class ProxycurlClient extends AIFunctionsProvider {
       .json<proxycurl.PersonProfile>()
   }
 
+  /** Resolves the LinkedIn profile for a person given their `first_name` and `company_domain` URL. */
   @aiFunction({
     name: 'resolve_linkedin_person',
     description:
@@ -2162,6 +2173,7 @@ export class ProxycurlClient extends AIFunctionsProvider {
       .json<proxycurl.ResolvedPersonProfile>()
   }
 
+  /** Resolves the LinkedIn profile for a person given their `email`. */
   @aiFunction({
     name: 'resolve_linkedin_person_by_email',
     description:
@@ -2181,6 +2193,7 @@ export class ProxycurlClient extends AIFunctionsProvider {
       .json<proxycurl.ReverseEmailUrlEnrichResult>()
   }
 
+  /** Resolves the LinkedIn profile for a person at a given `company_name` and `role`. */
   @aiFunction({
     name: 'resolve_linkedin_person_at_company_by_role',
     description:
@@ -2200,6 +2213,7 @@ export class ProxycurlClient extends AIFunctionsProvider {
       .json<proxycurl.ResolvedPersonProfile>()
   }
 
+  /** Resolves the LinkedIn profile for a company given the `company_name` and/or `company_domain`. */
   @aiFunction({
     name: 'resolve_linkedin_company',
     description:
@@ -2224,6 +2238,7 @@ export class ProxycurlClient extends AIFunctionsProvider {
     }
   }
 
+  /** Searches LinkedIn company profiles based on a set of criteria such as `name`, `industry`, `region`, `description`, `city`, number of employees, founding date, funding raised, etc. */
   @aiFunction({
     name: 'search_linkedin_companies',
     description:
@@ -2238,6 +2253,7 @@ export class ProxycurlClient extends AIFunctionsProvider {
       .json<proxycurl.CompanySearchResult>()
   }
 
+  /** Searches LinkedIn people profiles based on a set of criteria such as `country`, `first_name`, `last_name`, `current_company_name`, `headline`, `industries`, `past_company_name`, `summary`, `city`, `education_school_name`, etc. */
   @aiFunction({
     name: 'search_linkedin_people',
     description:

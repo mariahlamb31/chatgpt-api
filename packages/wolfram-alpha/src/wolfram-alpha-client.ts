@@ -63,6 +63,13 @@ export class WolframAlphaClient extends AIFunctionsProvider {
     })
   }
 
+  /**
+   * Answers computational, mathematical, and scientific questions.
+   *
+   * WolframAlpha understands natural language queries about entities in chemistry, physics, geography, history, art, astronomy, and more.
+   *
+   * WolframAlpha performs mathematical calculations, date and unit conversions, formula solving, etc.
+   */
   @aiFunction({
     name: 'ask_wolfram_alpha',
     description: `
